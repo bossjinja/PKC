@@ -26,6 +26,6 @@ class PrefixesRemoveUserid extends Migration
     {
         Schema::table('prefixes', function ($table) {
             $table->integer('user_id')->after('id');
-        })
+        });
     }
 }
