@@ -19,3 +19,5 @@ Route::get('/', function () {
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('petz/{id}', 'PetzController@show');

@@ -16,6 +16,7 @@ class CreatePrefixesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('prefix', 30)->unique();
+            $table->string('display', 30);
             $table->string('notes');
             $table->timestamps();
             $table->softDeletes();
