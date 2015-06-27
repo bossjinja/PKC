@@ -13,9 +13,9 @@ class CreatePrefixUserTable extends Migration
     public function up()
     {
         Schema::create('prefix_user', function (Blueprint $table) {
-            $table->increments('id')
-                  ->integer('user_id')
-                  ->integer('prefix_id');
+            $table->increments('id');
+            $table->integer('user_id');
+            $table->integer('prefix_id');
             $table->timestamps();
             $table->softDeletes();
         });
