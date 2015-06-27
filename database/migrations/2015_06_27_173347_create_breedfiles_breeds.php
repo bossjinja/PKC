@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSpeciesTable extends Migration
+class CreateBreedfilesBreeds extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,10 @@ class CreateSpeciesTable extends Migration
      */
     public function up()
     {
-        Schema::create('species', function (Blueprint $table) {
+        Schema::create('breedfiles_breeds', function (Blueprint $table) {
             $table->increments('id');
-            
+            $table->integer('breedfile');
+            $table->integer('breed');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +28,6 @@ class CreateSpeciesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('species');
+        Schema::drop('breedfiles_breeds');
     }
 }
