@@ -16,8 +16,11 @@ class PetzController extends Controller
      * @return Response
      */
     public function index()
-    {
-        //
+    {     
+        $pet = Petz::all();
+        return view('petz.index')->with([
+            'pet' => $pet
+            ]);
     }
 
     /**
@@ -49,7 +52,7 @@ class PetzController extends Controller
     public function show($id)
     {
         $pet = Petz::find($id);
-        return view('petz')->with([
+        return view('petz.petz')->with([
             'pet' => $pet
             ]);
     }

@@ -15,8 +15,8 @@ class CreateTexturesTable extends Migration
         Schema::create('textures', function (Blueprint $table) {
             $table->increments('id');
             $table->string('texturefilename');
-            $table->integer('creator')->nullable();   
-            $table->integer('profileimage');//for the actual texture BMP, other pictures will be examples of its use on petz
+            $table->integer('creator_id')->nullable();   
+            $table->integer('profileimage_id');//for the actual texture BMP, other pictures will be examples of its use on petz
             $table->text('notes');//includes info on not suitable for W8, use this file instead
             $table->timestamps();
             $table->softDeletes();

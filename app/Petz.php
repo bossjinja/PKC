@@ -10,22 +10,26 @@ class Petz extends Model
     
     protected $fillable = [
         'user_id',
-        'old_pkc',
-        'prefix1',
-        'prefix2',
-        'suffix',
+        'oldpkc_id',
+        'prefix1_id',
+        'prefix2_id',
+        'suffix_id',
         'showname',
         'callname',
-        'breed',
+        'breed_id',
         'sex',
         'notes',
-        'breedfile',
+        'breedfile_id',
         'version',
-        'hexer',
-        'breeder',
+        'sire_id',
+        'dam_id',
+        'hexer_id',
+        'breeder_id',
+        'handler_id',
         'coat',
         'regtype',
-        'workflow'
+        'workflow',
+        'profileimage_id'
     ];
     
     public function user()

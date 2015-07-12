@@ -14,8 +14,8 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('task');
-            $table->integer('event');
+            $table->integer('task_id');
+            $table->integer('event_id');
             $table->timestamps();
             $table->softDeletes();
         });

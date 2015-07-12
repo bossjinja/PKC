@@ -14,7 +14,7 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('resource');
+            $table->integer('resource_id');
             $table->string('filename');
             $table->string('path');
             $table->enum('imagetype', ['Pet', 'Breedfile', 'Texture']);

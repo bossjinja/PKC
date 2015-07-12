@@ -15,7 +15,7 @@ class CreateBreedsTable extends Migration
         Schema::create('breeds', function (Blueprint $table) {
             $table->increments('id');
             $table->string('breedname');
-            $table->integer('breedgroup');
+            $table->integer('breedgroup_id');
             $table->text('structure');//coat and body shape
             $table->text('color');//including pigment, eyes, coat, skin, different style of layout for dogs and cats
             $table->text('faultsdqs');

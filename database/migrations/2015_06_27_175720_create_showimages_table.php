@@ -14,10 +14,10 @@ class CreateShowimagesTable extends Migration
     {
         Schema::create('showimages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pet');
+            $table->integer('pet_id');
             $table->string('filename');
             $table->string('path');
-            $table->integer('task');
+            $table->integer('task_id');
             $table->timestamps();
             $table->softDeletes();
         });

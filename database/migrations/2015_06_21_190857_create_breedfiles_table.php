@@ -16,10 +16,10 @@ class CreateBreedfilesTable extends Migration
             $table->increments('id');
             $table->string('breedfilename');// e.g. CS Labrador
             $table->string('version');
-            $table->integer('hexer')->nullable();            
+            $table->integer('hexer_id')->nullable();            
             $table->string('downloadfilename'); 
             $table->string('downloadpath');
-            $table->integer('profileimage');//like facebook album covers
+            $table->integer('profileimage_id');//like facebook album covers
             $table->text('notes');
             $table->enum('scp', ['Bulldog','Chihuahua','Dachshund','Dalmatian','Great Dane','Labrador','Mutt','Scottie','Sheepdog','Poodle','Alley Cat','B+W Shorthair','Calico','Chinchilla Persian','Persian','Siamese','Maine Coon','Orange Shorthair','Tabby','Russian Blue']);
             $table->enum('base', ['Bulldog','Chihuahua','Dachshund','Dalmatian','Great Dane','Labrador','Mutt','Scottie','Sheepdog','Poodle','Alley Cat','B+W Shorthair','Calico','Chinchilla Persian','Persian','Siamese','Maine Coon','Orange Shorthair','Tabby','Russian Blue']);

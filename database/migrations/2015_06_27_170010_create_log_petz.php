@@ -14,7 +14,7 @@ class CreateLogPetz extends Migration
     {
         Schema::create('log_petz', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pet');
+            $table->integer('pet_id');
             $table->string('notes');
             $table->timestamps();
             $table->softDeletes();

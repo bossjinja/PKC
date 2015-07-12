@@ -14,8 +14,8 @@ class CreateBreedfilesBreeds extends Migration
     {
         Schema::create('breedfiles_breeds', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('breedfile');
-            $table->integer('breed');
+            $table->integer('breedfile_id');
+            $table->integer('breed_id');
             $table->timestamps();
             $table->softDeletes();
         });

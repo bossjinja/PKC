@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Prefix;
 
-class Prefix extends Controller
+class PrefixController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -47,7 +48,10 @@ class Prefix extends Controller
      */
     public function show($id)
     {
-        //
+        $prefix = Prefix::find($id);
+        return view('prefix')->with([
+            'prefix' => $prefix
+            ]);
     }
 
     /**

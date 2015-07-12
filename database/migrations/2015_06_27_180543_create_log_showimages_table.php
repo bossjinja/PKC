@@ -14,7 +14,7 @@ class CreateLogShowimagesTable extends Migration
     {
         Schema::create('log_showimages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pet');
+            $table->integer('pet_id');
             $table->string('filename');
             $table->integer('size');
             $table->integer('width');

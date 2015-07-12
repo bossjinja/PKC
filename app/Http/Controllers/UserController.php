@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\User;
 
-class User extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -47,7 +48,10 @@ class User extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('user')->with([
+            'user' => $user
+            ]);
     }
 
     /**
