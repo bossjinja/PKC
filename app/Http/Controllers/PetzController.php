@@ -51,7 +51,7 @@ class PetzController extends Controller
      */
     public function show($id)
     {
-        $pet = Petz::find($id);
+        $pet = Petz::with('breed', 'hexer', 'breeder', 'owner', 'breedfile', 'prefix1', 'prefix2', 'suffix')->find($id);
         return view('petz.petz')->with([
             'pet' => $pet
             ]);

@@ -23,5 +23,4 @@ Route::get('/', function () {
 Route::get('petz/{id}', 'PetzController@show');
 Route::get('prefix/{id}', 'PrefixController@show');
 Route::get('user/{id}', 'UserController@show');
-
 Route::get('petz/', 'PetzController@index');

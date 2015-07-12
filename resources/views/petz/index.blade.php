@@ -11,3 +11,4 @@ Here is a list of petz:
 @foreach ($pet as $pet)
     <p>This is pet {{ $pet->showname }}</p>
 @endforeach
+
