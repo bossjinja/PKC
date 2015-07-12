@@ -33,9 +33,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
     
-    public function petz()
+    public function owners()
     {
-        return $this->hasMany('App\Petz');
+        return $this->hasMany('App\Petz', 'owner_id');
+    }
+    
+    public function hexers()
+    {
+        return $this->hasMany('App\Petz', 'hexer_id');
+    }
+    
+    public function breeders()
+    {
+        return $this->hasMany('App\Petz', 'breeder_id');
     }
     
     public function prefixes()

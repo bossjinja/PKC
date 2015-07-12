@@ -20,4 +20,19 @@ class Prefix extends Model
     {
         return $this->belongsToMany('App\User');
     }
+    
+    public function prefix1()
+    {
+        return $this->hasMany('App\Petz', 'prefix1_id');
+    }
+    
+    public function prefix2()
+    {
+        return $this->hasMany('App\Petz', 'prefix2_id');
+    }
+    
+    public function suffix()
+    {
+        return $this->hasMany('App\Petz', 'suffix_id');
+    }
 }
