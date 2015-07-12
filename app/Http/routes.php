@@ -21,3 +21,4 @@ Route::get('/', function () {
 });
 
 Route::get('petz/{id}', 'PetzController@show');
+Route::get('petz/', 'PetzController@index');
