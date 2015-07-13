@@ -14,13 +14,13 @@ Version: {{ $pet->version }}
 <br>
 Owner: {{ $pet->owner->name }}
 <br>
-Hexer: {{ $pet->hexer->name }}
+Hexer: {{ $pet->hexer->name or '' }}
 <br>
-Breeder: {{ $pet->breeder->name }}
+Breeder: {{ $pet->breeder->name or '' }}
 <br>
 Registration: {{ $pet->regtype }}
 <br>
-Old PKC#: {{ $pet->old_pkc }}
+Old PKC#: {{ $pet->oldpkc_id }}
 <br>
 Notes: {{ $pet->notes }}
 

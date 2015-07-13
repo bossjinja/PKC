@@ -33,9 +33,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
     
-    public function owners()
+    public function petz()
     {
-        return $this->hasMany('App\Petz', 'owner_id');
+        return $this->hasMany('App\Petz', 'user_id');
     }
     
     public function hexers()
@@ -50,6 +50,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     
     public function prefixes()
     {
-        return $this->hasMany('App\Prefix');
+        return $this->belongsToMany('App\Prefix', 'prefix_user');
     }
 }
