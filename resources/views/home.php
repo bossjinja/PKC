@@ -1,1 +1,0 @@
-<p>Welcome to Petz Kennel Club!</p>

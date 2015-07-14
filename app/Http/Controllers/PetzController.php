@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Petz;
+use Illuminate\Support\Facades\Auth;
 
 class PetzController extends Controller
 {
@@ -30,7 +31,8 @@ class PetzController extends Controller
      */
     public function create()
     {
-        //
+        //probably need to pull a list of all prefixes, all breeds, etc to send to the view to build the form
+        return view('petz.create');
     }
 
     /**
@@ -90,5 +92,13 @@ class PetzController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    //lists all regs the current user
+    public function regs(){
+        $petz = Petz::with('prefix1', 'prefix2', 'suffix')->where('user_id', Auth::user()->id)->where('workflow', '!=', 'Complete')->get();
+        return view('petz.regs')->with([
+            'regs' => $petz
+            ]);
     }
 }
