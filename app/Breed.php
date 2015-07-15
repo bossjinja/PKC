@@ -10,7 +10,7 @@ class Breed extends Model
     
     protected $fillable = [
         'breedname',
-        'breedgroup',
+        'breedgroup_id',
         'structure',
         'color',
         'faultsdqs',
@@ -19,5 +19,9 @@ class Breed extends Model
     
     public function petz(){
         return $this->hasMany('App\Petz');
+    }
+    
+    public function breedgroup(){
+        return $this->belongsTo('App\Breedgroup');
     }
 }

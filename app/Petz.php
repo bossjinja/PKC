@@ -144,6 +144,7 @@ class Petz extends Model
     //TODO: pedigrees
     public function pedigree()
     {
+        $pedigree = array();
         //2nd gen - parents
         $sire = $this->get_sire();
         $dam = $this->get_dam();
@@ -161,21 +162,12 @@ class Petz extends Model
                 if(!empty($greatgrandparent)){
                     $pedigree['ppggrandsire'] = $greatgrandparent;
                 }
-                else{
-                    $pedigree['ppggrandsire'] = NULL;
-                }
                 
                 //paternal paternal greatgranddam
                 $greatgrandparent = $grandparent->get_dam();
                 if(!empty($greatgrandparent)){
                     $pedigree['ppggranddam'] = $greatgrandparent;
                 }
-                else{
-                    $pedigree['ppgranddam'] = NULL;
-                }
-            }
-            else{
-                $pedigree['pgrandsire'] = NULL;
             }
             
             //paternal granddam
@@ -188,25 +180,13 @@ class Petz extends Model
                 if(!empty($greatgrandparent)){
                     $pedigree['pmggrandsire'] = $greatgrandparent;
                 }
-                else{
-                    $pedigree['pmggrandsire'] = NULL;
-                }
                 
                 //paternal maternal greatgranddam
                 $greatgrandparent = $grandparent->get_dam();
                 if(!empty($greatgrandparent)){
                     $pedigree['pmggranddam'] = $greatgrandparent;
                 }
-                else{
-                    $pedigree['pmgranddam'] = NULL;
-                }
             }
-            else{
-                $pedigree['pgranddam'] = NULL;
-            }
-        }
-        else{
-            $pedigree['sire'] = NULL;
         }
         
         //dam's family
@@ -222,21 +202,12 @@ class Petz extends Model
                 if(!empty($greatgrandparent)){
                     $pedigree['mpggrandsire'] = $greatgrandparent;
                 }
-                else{
-                    $pedigree['mpggrandsire'] = NULL;
-                }
                 
                 //maternal paternal greatgranddam
                 $greatgrandparent = $grandparent->get_dam();
                 if(!empty($greatgrandparent)){
                     $pedigree['mpggranddam'] = $greatgrandparent;
                 }
-                else{
-                    $pedigree['mpgranddam'] = NULL;
-                }
-            }
-            else{
-                $pedigree['mgrandsire'] = NULL;
             }
             
             //maternal granddam
@@ -249,25 +220,13 @@ class Petz extends Model
                 if(!empty($greatgrandparent)){
                     $pedigree['mmggrandsire'] = $greatgrandparent;
                 }
-                else{
-                    $pedigree['mmggrandsire'] = NULL;
-                }
                 
                 //maternal maternal greatgranddam
                 $greatgrandparent = $grandparent->get_dam();
                 if(!empty($greatgrandparent)){
                     $pedigree['mmggranddam'] = $greatgrandparent;
                 }
-                else{
-                    $pedigree['mmgranddam'] = NULL;
-                }
             }
-            else{
-                $pedigree['mgranddam'] = NULL;
-            }
-        }
-        else{
-            $pedigree['dam'] = NULL;
         }
         
         return $pedigree;
