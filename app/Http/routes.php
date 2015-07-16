@@ -34,16 +34,23 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('petz/', 'PetzController@index');
     
     //Prefix routes
-    Route::get('prefix/{id}', 'PrefixController@show');
+    Route::get('prefixes/create', ['as' => 'addprefix', 'uses' => 'PrefixController@create']);
+    Route::post('prefixes/store', ['as' => 'storeprefix', 'uses' => 'PrefixController@store']);
+    Route::get('prefixes/{id}/edit', ['as' => 'editprefix', 'uses' => 'PrefixController@edit']);
+    Route::post('prefixes/{id}/update', ['as' => 'updateprefix', 'uses' => 'PrefixController@update']);
+    Route::get('prefixes/{id}', ['as' => 'showprefix', 'uses' => 'PrefixController@show']);
+    Route::get('prefixes/', ['as' => 'prefixlist', 'uses' => 'PrefixController@index']);
     
     //User routes
     Route::get('user/{name}', 'UserController@show');
     
     //Breed routes
-    Route::get('breed/create', 'BreedController@create');
-    Route::post('breed/store', ['as' => 'addbreed', 'uses' => 'BreedController@store']);
-    Route::get('breed/{id}', ['as' => 'showbreed', 'uses' => 'BreedController@show']);
-    Route::get('breed/', ['as' => 'breedlist', 'uses' => 'BreedController@index']);
+    Route::get('breeds/create', ['as' => 'addbreed', 'uses' => 'BreedController@create']);
+    Route::post('breeds/store', ['as' => 'storebreed', 'uses' => 'BreedController@store']);
+    Route::get('breeds/{id}/edit', ['as' => 'editbreed', 'uses' => 'BreedController@edit']);
+    Route::post('breeds/{id}/update', ['as' => 'updatebreed', 'uses' => 'BreedController@update']);
+    Route::get('breeds/{id}', ['as' => 'showbreed', 'uses' => 'BreedController@show']);
+    Route::get('breeds/', ['as' => 'breedlist', 'uses' => 'BreedController@index']);
     
 });
 

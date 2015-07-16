@@ -22,13 +22,15 @@ class BreedController extends Controller
         ->join('breedgroups', 'breeds.breedgroup_id', '=', 'breedgroups.id')
         ->where('breedgroups.species', 'Dog')
         ->orderBy('breedgroups.displayorder', 'asc')
-        ->orderBy('breeds.breedname', 'asc')->get();
+        ->orderBy('breeds.breedname', 'asc')
+        ->get(array('breeds.*', 'breeds.id as breed_id', 'breedgroups.*'));
         
         $catbreeds = Breed::with('breedgroup')
         ->join('breedgroups', 'breeds.breedgroup_id', '=', 'breedgroups.id')
         ->where('breedgroups.species', 'Cat')
         ->orderBy('breedgroups.displayorder', 'asc')
-        ->orderBy('breeds.breedname', 'asc')->get();
+        ->orderBy('breeds.breedname', 'asc')
+        ->get(array('breeds.*', 'breeds.id as breed_id', 'breedgroups.*'));
         
         return view('breed.list')->with([
           'dogbreeds' => $dogbreeds,
@@ -93,7 +95,13 @@ class BreedController extends Controller
      */
     public function edit($id)
     {
-        //
+        $breed = Breed::with('breedgroup')->find($id);
+        $groups = Breedgroup::all();
+        
+        return view('breed.edit')->with([
+                    'breed' => $breed,
+                    'groups' => $groups
+                    ]);
     }
 
     /**
@@ -102,9 +110,12 @@ class BreedController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($id, Request $request)
     {
-        //
+        $breed = Breed::find($id);
+        $breed->update($request->all());
+        
+        return redirect()->route('showbreed', [$id]);
     }
 
     /**
