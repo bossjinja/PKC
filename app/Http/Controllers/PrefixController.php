@@ -17,7 +17,11 @@ class PrefixController extends Controller
      */
     public function index()
     {
-        //
+        $prefixes = Prefix::with('users')->get();
+        
+        return view('prefix.list')->with([
+            'prefixes' => $prefixes
+            ]);
     }
 
     /**
@@ -27,7 +31,7 @@ class PrefixController extends Controller
      */
     public function create()
     {
-        //
+        return view('prefix.create');
     }
 
     /**
@@ -48,8 +52,8 @@ class PrefixController extends Controller
      */
     public function show($id)
     {
-        $prefix = Prefix::find($id);
-        return view('prefix')->with([
+        $prefix = Prefix::with('users')->find($id);
+        return view('prefix.show')->with([
             'prefix' => $prefix
             ]);
     }

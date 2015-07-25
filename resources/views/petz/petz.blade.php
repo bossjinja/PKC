@@ -1,3 +1,9 @@
+@extends('layouts.master')
+
+@section('title', 'Petz View')
+
+@section('content')
+
 Hello world, I'm a petz!
 <br><br>
 Showname: {{ $pet->formatted_showname() }}
@@ -26,7 +32,7 @@ Notes: {{ $pet->notes }}
 
 <br>
 Pedigree
-<table>
+<table class="table table-bordered">
   <tr>
     <td rowspan='8'>{{ $pet->formatted_showname() }}</td>
     <td rowspan='4'>
@@ -143,4 +149,6 @@ Pedigree
     </td>
   </tr>
 </table>
+
+@endsection
   
