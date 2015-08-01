@@ -11,9 +11,14 @@
             @section('sidebar')
               <div class="col-md-4">
                 @if (Auth::check())
-                  <a href="{{ route('breedlist') }}">Breeds</a><br><br>
+                  <a href="{{ route('breedlist') }}">Breeds</a><br>
+                  <a href="{{ route('prefixlist') }}">Prefixes</a><br>
+                  <a href="{{ route('petzlist') }}">Petz (all)</a><br>
+                  <a href="{{ route('userlist') }}">Users (all)</a><br>
+                  <a href="{{ route('regslist') }}">Register Petz</a><br>
+                  <a href="{{ route('createprefix') }}">Register Prefix</a><br>
                 
-                  <a href="{{ route('logout') }}">Logout</a>
+                  <br><a href="{{ route('logout') }}">Logout</a>
                 @else
                   <a href="{{ route('login') }}">Login</a> - <a href="{{ route('newuser') }}">Sign Up</a>
                 @endif
