@@ -1,21 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
-
 Route::get('/', function () {
     return view('home');
 });
@@ -27,14 +10,14 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function() {
     
     //Petz routes
-    Route::get('petz/regs', 'PetzController@regs');
-    Route::get('petz/create', 'PetzController@create');
-    Route::post('petz/store', ['as' => 'regpet', 'uses' => 'PetzController@store']);
-    Route::get('petz/{id}', 'PetzController@show');
-    Route::get('petz/', 'PetzController@index');
+    Route::get('petz/regs', ['as' => 'regslist', 'uses' => 'PetzController@regs']);
+    Route::get('petz/create', ['as' => 'createpet', 'uses' => 'PetzController@create']);
+    Route::post('petz/store', ['as' => 'storepet', 'uses' => 'PetzController@store']);
+    Route::get('petz/{id}', ['as' => 'showpet', 'uses' => 'PetzController@show']);
+    Route::get('petz/', ['as' => 'petzlist', 'uses' => 'PetzController@index']);
     
     //Prefix routes
-    Route::get('prefixes/create', ['as' => 'addprefix', 'uses' => 'PrefixController@create']);
+    Route::get('prefixes/create', ['as' => 'createprefix', 'uses' => 'PrefixController@create']);
     Route::post('prefixes/store', ['as' => 'storeprefix', 'uses' => 'PrefixController@store']);
     Route::get('prefixes/{id}/edit', ['as' => 'editprefix', 'uses' => 'PrefixController@edit']);
     Route::post('prefixes/{id}/update', ['as' => 'updateprefix', 'uses' => 'PrefixController@update']);
@@ -42,7 +25,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('prefixes/', ['as' => 'prefixlist', 'uses' => 'PrefixController@index']);
     
     //User routes
-    Route::get('user/{name}', 'UserController@show');
+    Route::get('users/{name}', ['as' => 'showuser', 'uses' => 'UserController@show']);
+    Route::get('users/', ['as' => 'userlist', 'uses' => 'UserController@index']);
     
     //Breed routes
     Route::get('breeds/create', ['as' => 'addbreed', 'uses' => 'BreedController@create']);

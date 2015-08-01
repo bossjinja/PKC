@@ -18,7 +18,7 @@ class PetzController extends Controller
      */
     public function index()
     {     
-        $pet = Petz::all();
+        $pet = Petz::with('prefix1', 'prefix2', 'suffix')->get();
         return view('petz.index')->with([
             'pet' => $pet
             ]);
