@@ -50,6 +50,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     
     public function prefixes()
     {
-        return $this->belongsToMany('App\Prefix', 'prefix_user');
+        return $this->belongsToMany('App\Prefix', 'prefix_user')->withTimestamps();
     }
+    
 }

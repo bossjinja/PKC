@@ -12,13 +12,33 @@ class Prefix extends Model
         'prefix',
         'prefix_possessive',
         'suffix_possessive',
-        'notes',
-        'display'
+        'notes'
+    ];
+    
+    public $prefix_possessives = [
+        "none" => "",
+        "'" => "'",
+        "'s" => "'s",
+        "s" => "s",
+        "'z" => "'z",
+        "z" => "z"
+    ];
+    
+    public $suffix_possessives = [
+        "none" => "",
+        "of" => "of",
+        "at" => "at",
+        "von" => "von",
+        "vom" => "vom",
+        "de" => "de",
+        "d'" => "d'",
+        "no" => "no",
+        "z" => "z"
     ];
     
     public function users()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\User')->withTimestamps();
     }
     
     public function prefix1()

@@ -18,11 +18,15 @@ Sex: {{ $pet->sex }}
 <br>
 Version: {{ $pet->version }}
 <br>
-Owner: {{ $pet->owner->name }}
+Owner: <a href="{{ route('showuser', $pet->owner->name) }}">{{ $pet->owner->name }}</a>
 <br>
-Hexer: {{ $pet->hexer->name or '' }}
+Hexer: @if(!empty($pet->hexer))
+           <a href="{{ route('showuser', $pet->hexer->name) }}">{{ $pet->hexer->name }}</a>
+       @endif
 <br>
-Breeder: {{ $pet->breeder->name or '' }}
+Breeder: @if(!empty($pet->breeder))
+           <a href="{{ route('showuser', $pet->breeder->name) }}">{{ $pet->breeder->name }}</a>
+         @endif
 <br>
 Registration: {{ $pet->regtype }}
 <br>

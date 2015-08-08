@@ -105,12 +105,12 @@ class Petz extends Model
         $showname = '';
         //pull prefix1 if present
         if(!empty($this->prefix1)){
-           $showname .= $this->prefix1->display;
+           $showname .= $this->prefix1->prefix;
         }
         //pull prefix2 if present
         if(!empty($this->prefix2)){
             //always use posessive
-            $showname .= ' '.$this->prefix2->display;
+            $showname .= ' '.$this->prefix2->prefix;
             if(!empty($this->prefix2->prefix_possessive))
             {
                 $showname .= $this->prefix2->prefix_possessive;
@@ -125,7 +125,7 @@ class Petz extends Model
             if(!empty($this->suffix->suffix_possessive)){
                 $showname .= ' '.$this->suffix->suffix_possessive;
             }
-            $showname .= ' '.$this->suffix->display;
+            $showname .= ' '.$this->suffix->prefix;
         }
         
         return $showname;

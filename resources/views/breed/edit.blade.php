@@ -6,7 +6,7 @@
 
 This is the edit breed form.
 
-<form method="POST" action="{{ route('editbreed', [$breed->id]) }}">
+<form method="POST" action="{{ route('updatebreed', [$breed->id]) }}">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
   
    <div class="form-group">

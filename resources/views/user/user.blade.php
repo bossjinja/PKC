@@ -16,7 +16,7 @@ Prefixes: {{ count($user->prefixes) }}
 <h3>Prefixes</h3>
     <ul class="list-unstyled">
     @foreach ($user->prefixes as $prefix)
-        <li>{{ $prefix->display }}</li>
+        <li><a href="{{ route('showprefix', $prefix->id) }}">{{ $prefix->prefix }}</a></li>
     @endforeach
     </ul>
 
