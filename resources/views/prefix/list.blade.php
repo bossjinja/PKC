@@ -4,14 +4,14 @@
 
 @section('content')
 
-  <table>
+  <table class="table">
     <tr><td>Prefix</td><td>Owner(s)</td></tr>
   @foreach ($prefixes as $prefix)
     <tr>
-      <td>{{ $prefix->display }}</td>
+      <td><a href="{{ route('showprefix', $prefix->id) }}">{{ $prefix->prefix }}</a></td>
       <td>
         @foreach ($prefix->users as $user)
-          {{ $user->name}},
+          <a href="{{ route('showuser', $user->name) }}">{{ $user->name}}</a>,
         @endforeach
       </td>
     </tr>

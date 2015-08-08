@@ -31,7 +31,7 @@ class PrefixController extends Controller
      */
     public function create()
     {
-        return view('prefix.create');
+        return view('prefix.create')->with(['prefix' => new Prefix]);
     }
 
     /**
@@ -39,9 +39,17 @@ class PrefixController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        //validate form data
+        $this->validate($request, [
+          'prefix' => 'required|unique:prefixes'
+        ]);
+        
+        $prefix = Prefix::create($request->all());
+        $prefix->users()->attach(\Auth::user()->id);
+        return redirect()->route('prefixlist');
+    
     }
 
     /**
@@ -66,7 +74,10 @@ class PrefixController extends Controller
      */
     public function edit($id)
     {
-        //
+        $prefix = Prefix::with('users')->find($id);
+        return view('prefix.edit')->with([
+            'prefix' => $prefix
+            ]);
     }
 
     /**
@@ -75,9 +86,12 @@ class PrefixController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($id, Request $request)
     {
-        //
+        $prefix = Prefix::find($id);
+        $prefix->update($request->all());
+        
+        return redirect()->route('showprefix', [$id]);
     }
 
     /**
