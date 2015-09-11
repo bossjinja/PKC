@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Petz;
 use Illuminate\Support\Facades\Auth;
+use App\Prefix;
+use App\Breed;
 
 class PetzController extends Controller
 {
@@ -32,7 +34,22 @@ class PetzController extends Controller
     public function create()
     {
         //probably need to pull a list of all prefixes, all breeds, etc to send to the view to build the form
-        return view('petz.create');
+        //pull all prefixes
+        $prefixes = Prefix::orderBy('prefix')->get();
+        
+        //pull all breeds
+        $breeds = Breed::with('breedgroup')
+        ->join('breedgroups', 'breeds.breedgroup_id', '=', 'breedgroups.id')
+        ->orderBy('breedgroups.species', 'asc')
+        ->orderBy('breedgroups.displayorder', 'asc')
+        ->orderBy('breeds.breedname', 'asc')
+        ->get(array('breeds.*', 'breeds.id as breed_id'));
+        
+        
+        return view('petz.create')->with([
+            'prefixes' => $prefixes,
+            'breeds' => $breeds
+            ]);
     }
 
     /**
