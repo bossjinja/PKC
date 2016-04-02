@@ -3,8 +3,14 @@
 @section('title', 'Register Petz')
 
 @section('content')
-
-  This is register petz form.
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Your petz showname will display as:</h3>
+    </div>
+    <div class="panel-body" id="computated_showname">
+    </div>
+  </div>
   
   <form method="POST" action="{{ route('storepet') }}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -53,7 +59,7 @@
       
     <div class="form-group col-md-3">
       <label for="breed">Breed</label>
-      <select name="breed" class="form-control">
+      <select id="breed" name="breed" class="form-control">
         @foreach ($breeds as $breed)
           <option value="{{ $breed->id }}">{{ $breed->breedname }}</option>
         @endforeach
@@ -83,18 +89,35 @@
           <option value="Petz 5">Petz 5</option>
         </select>
     </div>
+      
+    <div class="form-group col-md-2">
+      <label for="sire">Sire PKC#</label>
+      <input type="text" name="sire" value="{{ old('sire') }}" class="form-control">
+    </div>
+      
+    <div class="form-group col-md-2">
+      <label for="dam">Dam PKC#</label>
+      <input type="text" name="dam" value="{{ old('dam') }}" class="form-control">
+    </div>
+      
+    <div class="form-group col-md-8">
+      <label for="pattern">Pattern</label>
+      <input type="text" name="pattern" value="{{ old('pattern') }}" class="form-control">
+    </div>
+      
+    <div class="form-group col-md-12" id="breedfile-div">
+      
+    </div>
   
     <div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
     
-    <h4>Your petz showname will display as:</h4>
-    <div id="computated_showname">
-      
-    </div>
+    
   </form>
     
   <script type="text/javascript">
+      //showname preview
       $(".sn").change(function() {
         var showname = "";
         
@@ -140,6 +163,29 @@
         }
         
         $("#computated_showname").html(showname);
+      });
+      
+      //breedfile selector
+      //send ajax to pull the breedfiles for the selected breed and displays them
+      $("#breed").change(function(){
+        var breed = $("#breed").val();
+        alert(breed);
+        
+        //send ajax request to get breedfiles
+        $.ajax({
+          headers: { 'csrftoken' : '{{ csrf_token() }}' },
+          url: '{{ route('ajax.breedfiles') }}',
+          data: { breed: breed },
+          type: 'GET',
+          error: function() {
+            alert("Error!");
+          },
+          success: function(data){
+            alert("Success");
+            alert(data);
+          }
+        });
+        
       });
   </script>
 @endsection
