@@ -169,7 +169,7 @@
       //send ajax to pull the breedfiles for the selected breed and displays them
       $("#breed").change(function(){
         var breed = $("#breed").val();
-        alert(breed);
+        //alert(breed);
         
         //send ajax request to get breedfiles
         $.ajax({
@@ -181,8 +181,27 @@
             alert("Error!");
           },
           success: function(data){
-            alert("Success");
-            alert(data);
+            //alert("Success");
+            //console.log(JSON.stringify(data));
+            html = "<div class=\"radio\">";
+            html += "<label>";
+            html += "<input type=\"radio\" name=\"breedfile_id\" value=\"0\" checked>";
+            html += "I don't know/mix of files";
+            html += "</label></div>";
+            
+            
+            $.each(data.breedfiles, function(i, breedfile){
+              //alert(breedfile.breedfilename);
+              html += "<div class=\"radio\">";
+              html += "<label>";
+              html += "<input type=\"radio\" name=\"breedfile_id\" value=\"";
+              html += breedfile.id;
+              html += "\">";
+              html += breedfile.breedfilename;
+              html += "</label></div>";
+            });
+            
+            $("#breedfile-div").html(html);
           }
         });
         
