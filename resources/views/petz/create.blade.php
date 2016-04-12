@@ -12,7 +12,7 @@
     </div>
   </div>
   
-  <form method="POST" action="{{ route('storepet') }}">
+  <form method="POST" action="{{ route('storepet') }}" enctype="multipart/form-data">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     
     <div class="form-group col-md-2">
@@ -107,6 +107,14 @@
       
     <div class="form-group col-md-12" id="breedfile-div">
       
+    </div>
+      
+    <div class="form-group col-md-12">
+      <label for="pattern">Registration Pictures</label>
+      <input type="file" name="reg1">
+      <input type="file" name="reg2">
+      <input type="file" name="reg3">
+      <p class="help-block">You must upload a picture of the left side and right side of the pet. Third slot is optional (for eyes, etc).</p>
     </div>
   
     <div>
