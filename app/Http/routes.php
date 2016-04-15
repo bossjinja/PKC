@@ -36,6 +36,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('breeds/{id}', ['as' => 'showbreed', 'uses' => 'BreedController@show']);
     Route::get('breeds/', ['as' => 'breedlist', 'uses' => 'BreedController@index']);
     
+    //Ajax routes
+    Route::get('ajax/breedfiles', ['as' => 'ajax.breedfiles', 'uses' => 'BreedfileController@get_breedfiles']);
+    
 });
 
 // Authentication routes...

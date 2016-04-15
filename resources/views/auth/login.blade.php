@@ -4,27 +4,46 @@
 
 @section('content')
 
-<h2>Login</h2>
-
-<form method="POST" action="{{ route('login') }}" class="form-inline">
-    {!! csrf_field() !!}
-
-    <div class="form-group">
-        <label for="name" class="sr-only">Username</label>
-        <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="Username">
+<div class="ui center aligned middle aligned grid">
+    <div class="column six wide">
+        <h2 class="ui header">
+            <div class="content">Log in to PKC</div>
+        </h2>
+        
+        <form method="POST" action="{{ route('login') }}" class="ui large form">
+            {!! csrf_field() !!}
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="Username">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" id="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="inline field">
+                    <div class="ui checkbox">
+                      <input class="hidden" tabindex="0" type="checkbox" name="remember">
+                      <label>Remember Me</label>
+                    </div>
+                  </div>
+                <button type="submit" class="ui fluid large teal submit button">Log In</div>
+                <div class="ui message">
+                    Don't have an account? <a href="{{ route('newuser') }}">Join PKC.</a>
+                </div>
+            </div>
+        </form>
+        
     </div>
+</div>
 
-    <div class="form-group">
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
-    </div>
 
-    <div class="checkbox">
-        <label>
-            <input type="checkbox" name="remember"> Remember Me
-        </label>
-    </div>
+<script>
+    $('.ui.checkbox').checkbox();
+</script>
 
-        <button type="submit" class="btn btn-default">Login</button>
-</form>
 @endsection

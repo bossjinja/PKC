@@ -12,7 +12,7 @@
   <p>Suffix possessive: {{ $prefix->suffix_possessive }}</p>
   <p>Owners:
     @foreach ($prefix->users as $user)
-      <a href="{{ route('showuser', $user->name) }}">{{ $user->name }}</a>,
+      <a href="{{ route('showuser', $user->name) }}" class="ui label">{{ $user->name }}</a>
     @endforeach
   </p>
 

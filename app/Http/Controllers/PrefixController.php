@@ -17,7 +17,7 @@ class PrefixController extends Controller
      */
     public function index()
     {
-        $prefixes = Prefix::with('users')->get();
+        $prefixes = Prefix::with('users')->orderBy('prefix')->get();
         
         return view('prefix.list')->with([
             'prefixes' => $prefixes

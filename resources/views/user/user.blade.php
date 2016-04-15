@@ -12,24 +12,33 @@ Petz: {{ count($user->petz) }}
 <br>
 Prefixes: {{ count($user->prefixes) }}
 
-<br><br>
 <h3>Prefixes</h3>
-    <ul class="list-unstyled">
+    <div class="ui link list">
     @foreach ($user->prefixes as $prefix)
-        <li><a href="{{ route('showprefix', $prefix->id) }}">{{ $prefix->prefix }}</a></li>
+        <div class="item"><a href="{{ route('showprefix', $prefix->id) }}">{{ $prefix->prefix }}</a></div>
     @endforeach
-    </ul>
+    </div>
 
 <h3>Petz</h3>
-    <table class="table table-bordered">
-        <tr><th>Showname</th><th>Callname</th><th>Breed</th><th>Sex</th></tr>
+    <table class="ui celled table">
+        <thead>
+            <tr><th>Showname</th><th>Callname</th><th>Breed</th><th>Sex</th></tr>
+        </thead>
+        <tbody>
             @foreach ($user->petz as $pet)
                 <tr>
                     <td><a href='../petz/{{ $pet->id }}'>{{ $pet->formatted_showname() }}</a></td>
                     <td>{{ $pet->callname }}</td>
                     <td>{{ $pet->breed->breedname }}</td>
-                    <td>{{ $pet->sex }}</td>
+                    <td>
+                        @if($pet->sex == 'male')
+                            <i class="man icon blue"></i>
+                        @else
+                            <i class="woman icon pink"></i>
+                        @endif
+                    {{ $pet->sex }}</td>
                 </tr>
             @endforeach
+        </tbody>
     </table>
 @endsection

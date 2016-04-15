@@ -24,4 +24,8 @@ class Breedfile extends Model
     public function petz(){
         return $this->hasMany('App\Petz');
     }
+    
+    public function breeds(){
+        return $this->hasMany('App\Breed', 'breedfiles_breeds');
+    }
 }
