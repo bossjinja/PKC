@@ -43,9 +43,9 @@
                             <a class="item" href="{{ route('userlist') }}">Members</a>
                         </div>
                     </div>
-                    <a class="item" href="{{ route('logout') }}">Logout</a>
+                    <a class="item" href="{{ route('logout') }}">Log Out</a>
                 @else
-                    <a class="item" href="{{ route('login') }}">Login</a>
+                    <a class="item" href="{{ route('login') }}">Log In</a>
                     <a class="item" href="{{ route('newuser') }}">Join</a>
                 @endif
             </div>
