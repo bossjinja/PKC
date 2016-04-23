@@ -10,6 +10,7 @@ use App\Petz;
 use Illuminate\Support\Facades\Auth;
 use App\Prefix;
 use App\Breed;
+use File;
 
 class PetzController extends Controller
 {
@@ -57,9 +58,18 @@ class PetzController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        $pet = new Petz();
+        
+        //validate form data
+        $this->validate($request, $pet->get_rules());
+        
+        $path = public_path().'/images/petz/'.date('Y').'/2000';
+        
+        File::makeDirectory($path, '0774', true);
+        
+        exit('passed validation');
     }
 
     /**

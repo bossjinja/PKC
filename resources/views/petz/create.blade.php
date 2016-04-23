@@ -5,6 +5,16 @@
 @section('content')
   <h1>Register Pet</h1>
     
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    
     <h5 class="ui top attached header inverted">Your petz showname will display as:</h5>
     <div class="ui attached segment" id="computated_showname">
       
@@ -17,7 +27,7 @@
         <div class="three wide field">
           <label for="prefix1">Prefix</label>
           <select name="prefix1" id="prefix1" class="ui dropdown sn">
-            <option value="0"></option>
+            <option value=""></option>
             @foreach ($prefixes as $prefix)
               <option value="{{ $prefix->id }}" suffix="{{ $prefix->suffix_possessive }}" prefix="{{ $prefix->prefix_possessive }}">{{ $prefix->prefix }}</option>
             @endforeach
@@ -27,7 +37,7 @@
         <div class="three wide field">
           <label for="prefix2">Prefix</label>
           <select name="prefix2" id="prefix2" class="ui dropdown sn">
-            <option value="0"></option>
+            <option value=""></option>
             @foreach ($prefixes as $prefix)
               <option value="{{ $prefix->id }}" suffix="{{ $prefix->suffix_possessive }}" prefix="{{ $prefix->prefix_possessive }}">{{ $prefix->prefix }}</option>
             @endforeach
@@ -43,7 +53,7 @@
         <div class="three wide field">
           <label for="suffix">Suffix</label>
           <select name="suffix" id="suffix" class="ui dropdown sn">
-            <option value="0"></option>
+            <option value=""></option>
             @foreach ($prefixes as $prefix)
               <option value="{{ $prefix->id }}" suffix="{{ $prefix->suffix_possessive }}" prefix="{{ $prefix->prefix_possessive }}">{{ $prefix->prefix }}</option>
             @endforeach
@@ -58,8 +68,8 @@
         </div>
           
         <div class="four wide field">
-          <label for="breed">Breed</label>
-          <select id="breed" name="breed" class="ui dropdown">
+          <label for="breed_id">Breed</label>
+          <select id="breed" name="breed_id" class="ui dropdown">
             @foreach ($breeds as $breed)
               <option value="{{ $breed->id }}">{{ $breed->breedname }}</option>
             @endforeach
@@ -103,8 +113,8 @@
         </div>
           
         <div class="ten wide field">
-          <label for="pattern">Pattern</label>
-          <input type="text" name="pattern" value="{{ old('pattern') }}">
+          <label for="coat">Coat Color & Pattern</label>
+          <input type="text" name="coat" value="{{ old('coat') }}">
         </div>
       </div>
         

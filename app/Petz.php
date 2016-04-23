@@ -32,6 +32,23 @@ class Petz extends Model
         'profileimage_id'
     ];
     
+    protected $rules = [
+        'prefix1' => 'required_without_all:prefix2,suffix',
+        'prefix2' => 'required_without_all:prefix1,suffix',
+        'suffix' => 'required_without_all:prefix1,prefix2',
+        'showname' => 'required',
+        'callname' => 'required',
+        'breed_id' => 'required',
+        'sex' => 'required',
+        'breedfile_id' => 'required',
+        'version' => 'required',
+        'coat' => 'required',
+        'regtype' => 'required',
+        'reg1' => 'required|mimes:gif,png',
+        'reg2' => 'required|mimes:gif,png',
+        'reg3' => 'mimes:gif,png'
+    ];
+    
     //RELATIONSHIPS
     
     public function owner()
@@ -139,6 +156,11 @@ class Petz extends Model
     public function get_dam()
     {
         return Petz::with('prefix1', 'prefix2', 'suffix')->find($this->dam_id);
+    }
+    
+    public function get_rules()
+    {
+        return $this->rules;
     }
     
     //TODO: pedigrees
