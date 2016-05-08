@@ -20,8 +20,8 @@ class PetzController extends Controller
      * @return Response
      */
     public function index()
-    {     
-        $pet = Petz::with('prefix1', 'prefix2', 'suffix')->get();
+    {
+        $pet = Petz::with('prefix1', 'prefix2', 'suffix')->where('workflow', '=', 'Complete')->get();
         return view('petz.index')->with([
             'pet' => $pet
             ]);
@@ -37,7 +37,7 @@ class PetzController extends Controller
         //probably need to pull a list of all prefixes, all breeds, etc to send to the view to build the form
         //pull all prefixes
         $prefixes = Prefix::orderBy('prefix')->get();
-        
+
         //pull all breeds
         $breeds = Breed::with('breedgroup')
         ->join('breedgroups', 'breeds.breedgroup_id', '=', 'breedgroups.id')
@@ -45,8 +45,8 @@ class PetzController extends Controller
         ->orderBy('breedgroups.displayorder', 'asc')
         ->orderBy('breeds.breedname', 'asc')
         ->get(array('breeds.*', 'breeds.id as breed_id'));
-        
-        
+
+
         return view('petz.create')->with([
             'prefixes' => $prefixes,
             'breeds' => $breeds
@@ -61,14 +61,19 @@ class PetzController extends Controller
     public function store(Request $request)
     {
         $pet = new Petz();
-        
+
         //validate form data
         $this->validate($request, $pet->get_rules());
-        
-        $path = public_path().'/images/petz/'.date('Y').'/2000';
-        
-        File::makeDirectory($path, '0774', true);
-        
+
+        //insert data into database
+        $pet->fill($request->all());
+        $pet->workflow = "Partial";
+        $pet->user_id = \Auth::user()->id;
+        $pet->save();
+
+        //$path = public_path().'/images/petz/'.date('Y').'/2000';
+        //File::makeDirectory($path, '0774', true);
+
         exit('passed validation');
     }
 
@@ -120,7 +125,7 @@ class PetzController extends Controller
     {
         //
     }
-    
+
     //lists all regs the current user
     public function regs(){
         $petz = Petz::with('prefix1', 'prefix2', 'suffix')->where('user_id', Auth::user()->id)->where('workflow', '!=', 'Complete')->get();
