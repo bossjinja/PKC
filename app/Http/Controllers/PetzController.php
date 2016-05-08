@@ -71,10 +71,28 @@ class PetzController extends Controller
         $pet->user_id = \Auth::user()->id;
         $pet->save();
 
-        //$path = public_path().'/images/petz/'.date('Y').'/2000';
-        //File::makeDirectory($path, '0774', true);
+        $path = public_path().'/images/petz/'.date('Y').'/'.$pet->id;
+        File::makeDirectory($path, '0774', true);
 
-        exit('passed validation');
+        if($request->hasFile('reg1')){
+          if($request->file('reg1')->isValid()){
+            $request->file('reg1')->move($path, 'reg1.'.$request->file('reg1')->getClientOriginalExtension());
+          }
+        }
+
+        if($request->hasFile('reg2')){
+          if($request->file('reg2')->isValid()){
+            $request->file('reg2')->move($path, 'reg2.'.$request->file('reg2')->getClientOriginalExtension());
+          }
+        }
+
+        if($request->hasFile('reg3')){
+          if($request->file('reg3')->isValid()){
+            $request->file('reg3')->move($path, 'reg3.'.$request->file('reg3')->getClientOriginalExtension());
+          }
+        }
+
+        exit("validation passed");
     }
 
     /**
