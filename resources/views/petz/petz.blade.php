@@ -6,6 +6,11 @@
 
 Hello world, I'm a petz!
 <br><br>
+Reg pictures:
+@foreach ($regpics as $regpic)
+  <img src="{{ asset($regpic->get_fullpath()) }}">
+@endforeach
+<br>
 Showname: {{ $pet->formatted_showname() }}
 <br>
 Callname: {{ $pet->callname }}
@@ -161,4 +166,3 @@ Pedigree
 
 <div class="ui divider"></div>
 @endsection
-  

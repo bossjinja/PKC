@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Prefix;
 use App\Breed;
 use File;
+use App\Image;
 
 class PetzController extends Controller
 {
@@ -65,34 +66,60 @@ class PetzController extends Controller
         //validate form data
         $this->validate($request, $pet->get_rules());
 
-        //insert data into database
+        //insert petz data into database
         $pet->fill($request->all());
-        $pet->workflow = "Partial";
+        $pet->workflow = "Draft";
         $pet->user_id = \Auth::user()->id;
         $pet->save();
 
-        $path = public_path().'/images/petz/'.date('Y').'/'.$pet->id;
+        //make directories for the files
+        $path = '/images/petz/'.date('Y').'/'.$pet->id;
         File::makeDirectory($path, '0774', true);
 
+        //move the reg pictures to where they're stored and add to database
         if($request->hasFile('reg1')){
           if($request->file('reg1')->isValid()){
-            $request->file('reg1')->move($path, 'reg1.'.$request->file('reg1')->getClientOriginalExtension());
+            $request->file('reg1')->move(public_path().$path, 'reg1.'.$request->file('reg1')->getClientOriginalExtension());
+
+            //save to Image database
+            $reg1 = new Image();
+            $reg1->resource_id = $pet->id;
+            $reg1->filename = 'reg1.'.$request->file('reg1')->getClientOriginalExtension();
+            $reg1->path = $path;
+            $reg1->imagetype = 'Reg';
+            $reg1->save();
           }
         }
 
         if($request->hasFile('reg2')){
           if($request->file('reg2')->isValid()){
-            $request->file('reg2')->move($path, 'reg2.'.$request->file('reg2')->getClientOriginalExtension());
+            $request->file('reg2')->move(public_path().$path, 'reg2.'.$request->file('reg2')->getClientOriginalExtension());
+
+            //save to Image database
+            $reg2 = new Image();
+            $reg2->resource_id = $pet->id;
+            $reg2->filename = 'reg2.'.$request->file('reg2')->getClientOriginalExtension();
+            $reg2->path = $path;
+            $reg2->imagetype = 'Reg';
+            $reg2->save();
           }
         }
 
         if($request->hasFile('reg3')){
           if($request->file('reg3')->isValid()){
-            $request->file('reg3')->move($path, 'reg3.'.$request->file('reg3')->getClientOriginalExtension());
+            $request->file('reg3')->move(public_path().$path, 'reg3.'.$request->file('reg3')->getClientOriginalExtension());
+
+            //save to Image database
+            $reg3 = new Image();
+            $reg3->resource_id = $pet->id;
+            $reg3->filename = 'reg3.'.$request->file('reg3')->getClientOriginalExtension();
+            $reg3->path = $path;
+            $reg3->imagetype = 'Reg';
+            $reg3->save();
           }
         }
 
-        exit("validation passed");
+        return redirect()->route('regslist');
     }
 
     /**
@@ -105,9 +132,11 @@ class PetzController extends Controller
     {
         $pet = Petz::with('breed', 'hexer', 'breeder', 'owner', 'breedfile', 'prefix1', 'prefix2', 'suffix')->find($id);
         $pedigree = $pet->pedigree();
+        $regpics = Image::where('resource_id', $pet->id)->where('imagetype', 'Reg')->get();
         return view('petz.petz')->with([
             'pet' => $pet,
-            'pedigree' => $pedigree
+            'pedigree' => $pedigree,
+            'regpics' => $regpics
             ]);
     }
 
