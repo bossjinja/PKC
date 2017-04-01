@@ -90,6 +90,11 @@ class Petz extends Model
         return $this->belongsTo('App\Prefix', 'suffix_id');
     }
 
+    public function images()
+    {
+      return $this->hasMany('App\Image', 'resource_id');
+    }
+
     //a pet has one sire
     public function sire()
     {
