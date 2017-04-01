@@ -1,14 +1,21 @@
-Here is a list of petz:
+@extends('layouts.master')
 
-@if (count($pet) === 1)
-    I have one record!
-@elseif (count($pet) > 1)
-    I have {{ (count($pet)) }} records!
-@else
-    I don't have any records!
-@endif
+@section('title', 'Home')
 
-@foreach ($pet as $pet)
-    <p>This is pet {{ $pet->showname }}</p>
-@endforeach
+@section('content')
 
+    Here is a list of petz:
+    
+    @if (count($pet) === 1)
+        I have one record!
+    @elseif (count($pet) > 1)
+        I have {{ (count($pet)) }} records!
+    @else
+        I don't have any records!
+    @endif
+    
+    @foreach ($pet as $pet)
+        <p><a href='{{ route('showpet', $pet->id) }}'>{{ $pet->formatted_showname() }}</a></p>
+    @endforeach
+
+@endsection

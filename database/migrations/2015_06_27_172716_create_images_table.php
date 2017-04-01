@@ -17,7 +17,7 @@ class CreateImagesTable extends Migration
             $table->integer('resource_id');
             $table->string('filename');
             $table->string('path');
-            $table->enum('imagetype', ['Pet', 'Breedfile', 'Texture']);
+            $table->enum('imagetype', ['Pet', 'Breedfile', 'Texture', 'Reg']);
             $table->timestamps();
             $table->softDeletes();
         });

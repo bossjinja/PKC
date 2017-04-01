@@ -1,0 +1,61 @@
+/* Custom colours */
+/*gold - e3b14f
+ *green - 5e8666
+ *grey - f5f5f5 */
+
+.navbar, .navbar-default, .navbar-fixed-top
+{
+  background-color: #5e8666;
+}
+
+a
+{
+  color:#5e8666;
+}
+
+a:hover,a:focus
+{
+  color:#e3b14f;
+}
+
+/* the PKC title */
+.navbar-default .navbar-brand
+{
+  color:#fff;
+}
+
+/* nav bar links */
+.navbar-default .navbar-nav > li > a {
+  color: #fff;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #e3b14f;
+}
+/*active page nav link*/
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #5e8666;
+  background-color: #e3b14f;
+}
+
+/*clicked dropdown*/
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #5e8666;
+  background-color: #e3b14f;
+}
+
+
+/*Footer edits*/
+.footer {
+  background-color: #5e8666;
+  color: #fff;
+  vertical-align: middle;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 70px;
+}

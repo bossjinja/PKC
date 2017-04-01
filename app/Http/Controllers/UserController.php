@@ -17,7 +17,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('user.list')->with([
+            'users' => $users
+        ]);
     }
 
     /**
@@ -46,10 +49,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show($name)
     {
-        $user = User::find($id);
-        return view('user')->with([
+        $user = User::with('prefixes', 'petz', 'petz.prefix1', 'petz.prefix2', 'petz.suffix')->where('users.name', $name)->first();
+        return view('user.user')->with([
             'user' => $user
             ]);
     }

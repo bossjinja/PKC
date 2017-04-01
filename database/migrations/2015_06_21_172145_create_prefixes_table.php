@@ -14,8 +14,9 @@ class CreatePrefixesTable extends Migration
     {
         Schema::create('prefixes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
             $table->string('prefix', 30)->unique();
+            $table->enum("prefix_possessive", ["", "\'s", "\'", "s", "\'z", "z"]);
+            $table->enum("suffix_possessive", ["", "of", "at", "von", "vom", "de", "d\'", "no", "z"]);
             $table->string('display', 30);
             $table->string('notes');
             $table->timestamps();

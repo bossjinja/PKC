@@ -33,7 +33,7 @@ class CreatePetzTable extends Migration
             $table->integer('handler_id')->nullable();
             $table->string('coat');
             $table->enum('regtype', ['Full', 'Limited']);
-            $table->enum('workflow', ['Partial', 'Submitted', 'Approved', 'Rejected', 'Complete']);
+            $table->enum('workflow', ['Draft', 'Submitted', 'Approved', 'Rejected', 'Complete']);
             $table->integer('profileimage_id');
             $table->timestamps();
             $table->softDeletes();
