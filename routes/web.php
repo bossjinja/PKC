@@ -14,3 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Kennels and Petz
+
+//Breeds
+Route::get('/breeds', 'BreedsController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
