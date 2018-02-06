@@ -18,12 +18,13 @@ Route::get('/', function () {
 //Kennels and Petz
 
 //Breeds
+Route::get('/breeds/new', 'BreedsController@create');
+Route::post('/breeds/store', 'BreedsController@store')->name('breeds.store');
+Route::post('/breeds/update/{id}', 'BreedsController@update')->name('breeds.update');
+Route::get('/breeds/edit/{id}', 'BreedsController@edit');
 Route::get('/breeds', 'BreedsController@index');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+//login and User Registration routes
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
